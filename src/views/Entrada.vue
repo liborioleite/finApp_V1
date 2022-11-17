@@ -21,7 +21,7 @@ export default {
       const has_password = localStorage.getItem("password");
       if (has_user != null && has_password != null) {
         // this.has_login = true;
-        //  alert("Logado!");
+        
       } else {
         // alert("Não está Logado")
         this.$router.push({ name: "login" });
