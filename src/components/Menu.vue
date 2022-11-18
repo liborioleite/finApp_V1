@@ -4,29 +4,49 @@
       <b-button v-b-toggle.sidebar-footer>Menu</b-button>
     </div>
 
-    <b-sidebar id="sidebar-footer" no-header shadow>
+    <b-sidebar id="sidebar-footer" bg-variant="dark" no-header shadow>
       <div class="mt-5 mb-5">
-        <b-button variant="primary" :to="{ name: 'balanco' }">
+        <b-button
+          variant="primary"
+          :to="{ name: 'balanco' }"
+          style="width: 100%"
+        >
           Balanço / Saldos Totais
         </b-button>
       </div>
       <div class="mt-5 mb-5">
-        <b-button variant="primary" :to="{ name: 'pagamento' }">
+        <b-button
+          variant="primary"
+          :to="{ name: 'pagamento' }"
+          style="width: 100%"
+        >
           Pagamentos
         </b-button>
       </div>
       <div class="mt-5 mb-5">
-        <b-button variant="primary" :to="{ name: 'entrada' }">
+        <b-button
+          variant="primary"
+          :to="{ name: 'entrada' }"
+          style="width: 100%"
+        >
           Entradas
         </b-button>
       </div>
       <div class="mt-5 mb-5">
-        <b-button variant="primary" :to="{ name: 'retirada' }">
+        <b-button
+          variant="primary"
+          :to="{ name: 'retirada' }"
+          style="width: 100%"
+        >
           Saídas
         </b-button>
       </div>
       <div class="mt-5 mb-5">
-       <b-button variant="primary" :to="{ name: 'extrato' }">
+        <b-button
+          variant="primary"
+          :to="{ name: 'extrato' }"
+          style="width: 100%"
+        >
           Extrato
         </b-button>
       </div>
