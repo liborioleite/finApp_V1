@@ -34,6 +34,8 @@ export default {
 
   data() {
     return {
+      acumulador_dep: 0,
+      qtd_depositos: 0,
       disponivel: null,
       valor_atual: 0,
       valor_deposito: "",
@@ -50,6 +52,8 @@ export default {
     this.isLoged();
     this.has_disponivel();
     this.has_entradas();
+    this.has_depositos();
+    this.has_qdtDepositos();
   },
   methods: {
     isLoged() {
@@ -76,6 +80,12 @@ export default {
         let new_entradas = { ...this.entrada };
         this.entradas.push(new_entradas);
         localStorage.setItem("entradas", JSON.stringify(this.entradas));
+
+        this.acumulador_dep = (Number(this.acumulador_dep) + (Number(this.valor_deposito)));
+        this.qtd_depositos ++;
+        localStorage.setItem('qtdDepositos',this.qtd_depositos)
+        localStorage.setItem('acumuladorDep', this.acumulador_dep);
+
         this.valor_deposito = "";
       }
     },
@@ -93,6 +103,23 @@ export default {
         this.entradas = [];
       }
     },
+
+    has_depositos() {
+        //acumulador_dep
+        let data  = localStorage.getItem('acumuladorDep');
+        if (data) {
+          this.acumulador_dep = data;
+          console.log(this.acumulador_dep);
+        }
+      },
+
+      has_qdtDepositos(){
+        let data = localStorage.getItem('qtdDepositos')
+        if (data) {
+          this.qtd_depositos = data;
+           console.log(this.qtd_depositos);
+        }
+      },
   },
 };
 </script>

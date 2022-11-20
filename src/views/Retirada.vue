@@ -34,9 +34,11 @@ export default {
 
   data() {
     return {
+      qtd_saque: 0,
       disponivel: null,
-      valor_atual: 0,
+      valor_atual: "",
       valor_retirado: "",
+      acumulador_ret: 0,
       retiradas: [],
       retirada: {
         dia: new Date().toLocaleDateString(),
@@ -50,6 +52,8 @@ export default {
     this.isLoged();
     this.has_disponivel();
     this.has_retiradas();
+    this.has_saques();
+    this.has_qdtSaques();
   },
   methods: {
     isLoged() {
@@ -68,11 +72,21 @@ export default {
         this.disponivel = Number(this.disponivel - this.valor_retirado);
         localStorage.setItem("disponivel", this.disponivel);
 
+        localStorage.setItem("valorretirado", this.valor_retirado);
         this.retirada.valor = this.valor_retirado;
         let data_retiradas = { ...this.retirada };
         this.retiradas.push(data_retiradas);
         localStorage.setItem("retiradas", JSON.stringify(this.retiradas));
+
+        this.acumulador_ret =
+          Number(this.acumulador_ret) + Number(this.valor_retirado);
+        this.qtd_saque++;
+        localStorage.setItem("qtdSaque", this.qtd_saque);
+        localStorage.setItem("acumulador_ret", this.acumulador_ret);
+
         this.valor_retirado = "";
+
+        // para aqui
       }
     },
 
@@ -81,11 +95,26 @@ export default {
     },
 
     has_retiradas() {
-      let data_retiradas = JSON.parse(localStorage.getItem('retiradas'))
+      let data_retiradas = JSON.parse(localStorage.getItem("retiradas"));
       if (data_retiradas) {
         this.retiradas = data_retiradas;
-      }else {
+      } else {
         this.retiradas = [];
+      }
+    },
+    has_saques() {
+      //acumulador_ret
+      let data = localStorage.getItem("acumulador_ret");
+      if (data) {
+        this.acumulador_ret = data;
+        console.log(this.acumulador_ret);
+      }
+    },
+    has_qdtSaques() {
+      let data = localStorage.getItem("qtdSaque");
+      if (data) {
+        this.qtd_saque = data;
+        console.log(this.qtd_saque);
       }
     },
   },
